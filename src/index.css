@@ -11,3 +11,13 @@ font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida San
 img.dot{
 width: 15px !important;
 }
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: cursive;
+    font-size: 24px;
+    font-weight: 600;
+    color: rgb(16, 15, 15);
+}

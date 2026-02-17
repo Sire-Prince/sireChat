@@ -49,11 +49,36 @@ const ChatBox = () => {
       <div className="chat-user">
         <img src={assets.profile_3} alt="" />
         <p>Richard Sanford <img src={assets.green_dot} className='dot' alt="" /></p>
-        <img src={assets.profile_4} alt="" />
+        <img src={assets.help} className='dot' alt="" />
       </div>
 
       <div className="chat-msg">
-        {/* Messages rendering should be implemented elsewhere */}
+        <div className="s-msg">
+          <p className='msg'>   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident
+           ad inventore expedita! Debitis neque facilis voluptatibus quibusdam
+         </p>
+         <div>
+          <img src={assets.profile_4} alt="" />
+          <p>2:30 PM</p>
+         </div>
+        </div>
+        <div className="s-msg">
+        <img className="msg-img" src={assets.hello} alt="" />
+         <div>
+          <img src={assets.profile_4} alt="" />
+          <p>2:30 PM</p>
+         </div>
+        </div>
+
+        <div className="r-msg">
+          <p className='msg'>   Lorem ipsum dolor, sit amet consectetur adipisicing elit. Provident
+           ad inventore expedita! Debitis neque facilis voluptatibus quibusdam
+         </p>
+         <div>
+          <img src={assets.profile_4} alt="" />
+          <p>2:30 PM</p>
+         </div>
+        </div>
       </div>
 
       <div className="chat-input">
@@ -74,11 +99,11 @@ const ChatBox = () => {
         />
 
         <label htmlFor="image">
-          <img src={assets.gallary_icon} alt="" />
+          <img src={assets.attach} alt="" />
         </label>
 
         <button onClick={handleSend} disabled={sending} className='send-btn'>
-          {sending ? 'Sending...' : <img src={assets.send_button} alt="" />}
+          {sending ? 'Sending...' : <img src={assets.send} alt="" />}
         </button>
       </div>
     </div>

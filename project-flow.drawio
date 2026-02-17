@@ -1,0 +1,155 @@
+<mxfile host="Electron" modified="2024-02-17T00:00:00.000Z" agent="5.0" etag="xyz" version="20.0">
+  <diagram id="project-flow" name="Project Architecture">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        
+        <!-- Entry Point -->
+        <mxCell id="entry" value="index.html" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1F5FE;strokeColor=#01579B;strokeWidth=2;fontSize=12;fontStyle=bold" vertex="1" parent="1">
+          <mxGeometry x="50" y="30" width="120" height="50" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="main" value="main.jsx&#10;(React Root)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#4A148C;strokeWidth=2;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="30" y="130" width="160" height="60" as="geometry"/>
+        </mxCell>
+        
+        <!-- BrowserRouter -->
+        <mxCell id="router" value="BrowserRouter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#880E4F;strokeWidth=2;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="30" y="230" width="160" height="50" as="geometry"/>
+        </mxCell>
+        
+        <!-- AppContextProvider -->
+        <mxCell id="provider" value="AppContextProvider&#10;(Global State)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#1B5E20;strokeWidth=2;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="30" y="320" width="160" height="60" as="geometry"/>
+        </mxCell>
+        
+        <!-- App Component -->
+        <mxCell id="app" value="App.jsx&#10;(Auth Check)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF3E0;strokeColor=#E65100;strokeWidth=2;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="30" y="420" width="160" height="60" as="geometry"/>
+        </mxCell>
+        
+        <!-- Routes -->
+        <mxCell id="routes" value="Routes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F1F8E9;strokeColor=#33691E;strokeWidth=2;fontSize=12;fontStyle=bold" vertex="1" parent="1">
+          <mxGeometry x="30" y="530" width="160" height="50" as="geometry"/>
+        </mxCell>
+        
+        <!-- Three Routes -->
+        <mxCell id="login-page" value="Login Page" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4EC;strokeColor=#C2185B;strokeWidth=2;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="300" y="480" width="120" height="50" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="chat-page" value="Chat Page" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#0D47A1;strokeWidth=2;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="480" y="480" width="120" height="50" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="profile-page" value="Profile Update" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3E5F5;strokeColor=#512DA8;strokeWidth=2;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="660" y="480" width="120" height="50" as="geometry"/>
+        </mxCell>
+        
+        <!-- Chat Components -->
+        <mxCell id="left-sidebar" value="LeftSideBar&#10;(Contacts)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2F1;strokeColor=#004D40;strokeWidth=2;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="480" y="590" width="110" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="chatbox" value="ChatBox&#10;(Messages)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2F1;strokeColor=#004D40;strokeWidth=2;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="630" y="590" width="110" height="60" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="right-sidebar" value="RightSideBar&#10;(Profile Info)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E0F2F1;strokeColor=#004D40;strokeWidth=2;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="780" y="590" width="110" height="60" as="geometry"/>
+        </mxCell>
+        
+        <!-- Firebase -->
+        <mxCell id="firebase" value="Firebase&#10;(Auth + Database)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFEBEE;strokeColor=#B71C1C;strokeWidth=2;fontSize=11;fontStyle=bold" vertex="1" parent="1">
+          <mxGeometry x="480" y="700" width="140" height="60" as="geometry"/>
+        </mxCell>
+        
+        <!-- Context Data -->
+        <mxCell id="context" value="AppContext&#10;(userData,&#10;loadUserData)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9C4;strokeColor=#F57F17;strokeWidth=2;fontSize=9" vertex="1" parent="1">
+          <mxGeometry x="850" y="320" width="120" height="70" as="geometry"/>
+        </mxCell>
+        
+        <!-- Arrows - Flow -->
+        <mxCell id="arrow1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000;strokeWidth=2" edge="1" parent="1" source="entry" target="main">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="arrow2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000;strokeWidth=2" edge="1" parent="1" source="main" target="router">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="arrow3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000;strokeWidth=2" edge="1" parent="1" source="router" target="provider">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="arrow4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000;strokeWidth=2" edge="1" parent="1" source="provider" target="app">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="arrow5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#000;strokeWidth=2" edge="1" parent="1" source="app" target="routes">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Route Arrows -->
+        <mxCell id="arrow6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#C2185B;strokeWidth=2;dashed=1" edge="1" parent="1" source="routes" target="login-page">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="arrow7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#0D47A1;strokeWidth=2;dashed=1" edge="1" parent="1" source="routes" target="chat-page">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="arrow8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#512DA8;strokeWidth=2;dashed=1" edge="1" parent="1" source="routes" target="profile-page">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Chat Component Arrows -->
+        <mxCell id="arrow9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#004D40;strokeWidth=2" edge="1" parent="1" source="chat-page" target="left-sidebar">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="arrow10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#004D40;strokeWidth=2" edge="1" parent="1" source="chat-page" target="chatbox">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="arrow11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#004D40;strokeWidth=2" edge="1" parent="1" source="chat-page" target="right-sidebar">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Firebase Connection -->
+        <mxCell id="arrow12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;dashed=1" edge="1" parent="1" source="app" target="firebase">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="110" y="450" as="sourcePoint"/>
+            <mxPoint x="550" y="700" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#B71C1C;strokeWidth=2;dashed=1" edge="1" parent="1" source="chatbox" target="firebase">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <!-- Context Connection -->
+        <mxCell id="arrow14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F57F17;strokeWidth=2;curved=1" edge="1" parent="1" source="provider" target="context">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="arrow15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#F57F17;strokeWidth=1;curved=1" edge="1" parent="1" source="context" target="app">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="850" y="450" as="sourcePoint"/>
+            <mxPoint x="190" y="450" as="targetPoint"/>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Legend -->
+        <mxCell id="legend1" value="Solid Arrow = Direct Flow" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=10;fontStyle=italic" vertex="1" parent="1">
+          <mxGeometry x="30" y="760" width="150" height="20" as="geometry"/>
+        </mxCell>
+        
+        <mxCell id="legend2" value="Dashed Arrow = Conditional/Indirect" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=10;fontStyle=italic" vertex="1" parent="1">
+          <mxGeometry x="250" y="760" width="200" height="20" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

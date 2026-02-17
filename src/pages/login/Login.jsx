@@ -10,15 +10,34 @@ const Login = () => {
     const [userName,setuserName] = useState("");
     const [email,setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
 
-
-const unSubmitHandler = (event) => {
+const unSubmitHandler = async (event) => {
 event.preventDefault();
-  if (currState === "Sign Up") {
-  signup(userName,email,password)
+setError("");
+
+if (password.length < 6) {
+  setError("Password must be at least 6 characters");
+  return;
 }
-else{
-  login(email,password)
+
+setLoading(true);
+try {
+  if (currState === "Sign Up") {
+    if (!userName.trim()) {
+      setError("Name is required");
+      setLoading(false);
+      return;
+    }
+    await signup(userName, email, password);
+  } else {
+    await login(email, password);
+  }
+} catch (err) {
+  setError(err.message || "Authentication failed");
+} finally {
+  setLoading(false);
 }
 }
 
@@ -35,14 +54,15 @@ else{
  : null}
         <input onChange={(e)=> setEmail(e.target.value)} value={email} type="email" placeholder="Email" className="form-input" required/>
         <input onChange={(e)=> setPassword(e.target.value)} value={password} type="password" placeholder="Password" className="form-input" required/>
-        <button>{currState === "Sign Up" ? "Create An Account" : "Login"}</button>
+        {error && <p style={{color: 'red', fontSize: '12px', marginBottom: '10px'}}>{error}</p>}
+        <button disabled={loading}>{loading ? "Loading..." : (currState === "Sign Up" ? "Create An Account" : "Login")}</button>
         <div className='login-term'>
             <input type="checkbox"/>
             <p>Agree to the terms of use & privacy policy</p>
         </div>
         <div className="login-forgot">
             {currState === "Sign Up" 
-            ?  <p className="login-toggle"> Already have an account <span  onClick={()=> setCurrState("LogIn")}> click here</span> </p> 
+            ?  <p className="login-toggle"> Already have an account <span  onClick={()=> setCurrState("Log In")}> click here</span> </p> 
             : <p className="login-toggle">
                 Create an account <span  onClick={()=> setCurrState("Sign Up")}> Sign up </span>
             </p> }

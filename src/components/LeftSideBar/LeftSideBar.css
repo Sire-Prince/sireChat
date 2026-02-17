@@ -29,8 +29,7 @@
 
 }
 .ls-nav .menu img{
-    max-height: 20px;
-    opacity:0.6;
+    max-height: 40px;
     cursor: pointer;
 }
 .ls-search{

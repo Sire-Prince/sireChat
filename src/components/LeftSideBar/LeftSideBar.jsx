@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./LeftSideBar.css" 
 import assets from '../../assets/assets'
-
+import { useNavigate } from 'react-router-dom'
+import { logout } from '../../config/firebase'
+import { AppContext } from '../../context/AppContext'
 
 const LeftSideBar = () => {
+  const navigate = useNavigate();
+  const { userData } = useContext(AppContext);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
   return (
     <div className='ls'>
 <div className='ls-top'>
@@ -11,11 +25,11 @@ const LeftSideBar = () => {
         <div className='logo'> <img src={assets.logo} className='logo-img' alt="logo" />Chat</div>
        
         <div className='menu'>
-            <img src={assets.logo} alt="menu"/>
+            <img src={assets.dots} alt="menu"/>
             <div className="sub-menu">
-                <p>Edit Profile</p>
+                <p onClick={() => navigate("/profile")}>Edit Profile</p>
                 <hr />
-                <p>Logout</p>
+                <p onClick={handleLogout}>Logout</p>
             </div>
         </div>
     </div>

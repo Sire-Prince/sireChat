@@ -23,27 +23,30 @@ const signup = async (username,email,password) => {
         const user = res.user;
         await setDoc(doc(db,"users",user.uid),{
             id:user.uid,
-            usernname:username.toLowerCase(),
+            username:username.toLowerCase(),
             email,
             name:"",
             avatar:"",
-            bio:"hi, am using sire cat app",
+            bio:"hi, am using sire chat app",
             lastSeen:Date.now()
         })
-        await setDoc(doc(db,"charts",user.uid),{
+        await setDoc(doc(db,"chats",user.uid),{
             chatData:[]
         })
+        return { success: true };
     } catch (error) {
-        console.error(error)
+        console.error(error);
+        throw new Error(error.code === 'auth/email-already-in-use' ? 'Email already in use' : 'Sign up failed');
     }
 }
 
 const login = async(email,password) =>{
 try {
     await signInWithEmailAndPassword(auth,email,password);
-
+    return { success: true };
 } catch (error) {
-    console.error(error)
+    console.error(error);
+    throw new Error(error.code === 'auth/user-not-found' ? 'User not found' : error.code === 'auth/wrong-password' ? 'Wrong password' : 'Login failed');
 }
 }
 

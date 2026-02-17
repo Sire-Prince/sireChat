@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../config/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { AppContext } from "./AppContext";
 
 const AppContextProvider = (props) => {
     const navigate = useNavigate();
