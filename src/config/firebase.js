@@ -1,16 +1,18 @@
 import { initializeApp } from "firebase/app";
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth"
-import { getFirestore, setDoc, doc } from "firebase/firestore"; 
+import { createUserWithEmailAndPassword, getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from "firebase/auth"
+import { getFirestore, setDoc, doc, collection, query, where, getDoc } from "firebase/firestore"; 
+import { toast } from "react-toastify/unstyled";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAAMCU8s8hfJ9dubkHFeb5QSuonJYbvVmI",
-  authDomain: "sire-chat-app.firebaseapp.com",
-  projectId: "sire-chat-app",
-  storageBucket: "sire-chat-app.firebasestorage.app",
-  messagingSenderId: "8692111827",
-  appId: "1:8692111827:web:805510688d17a3a8bfb726",
-  measurementId: "G-VLRYH6SGPV"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
+
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -31,7 +33,7 @@ const signup = async (username,email,password) => {
             lastSeen:Date.now()
         })
         await setDoc(doc(db,"chats",user.uid),{
-            chatData:[]
+            chatsData:[]
         })
         return { success: true };
     } catch (error) {
@@ -59,4 +61,26 @@ try {
 }      
   
 }
-export {signup,login,logout,auth,db}
+
+const resetPass = async (email)=>{
+    if(!email){
+        toast.error("Enter your E-mail");
+        return null
+    }
+    try {
+        const userRef = collection(db, "user");
+        const q = query(userRef, where("email","==",email));
+       const querSnap = await getDoc(q);
+     if(!querSnap.empty){
+        await sendPasswordResetEmail(auth,email);
+        toast.success("Reset Email Sent")
+     }
+     else{
+          toast.error("Email doesn't exist")
+     }
+    } catch (error) {
+        toast.error(error);
+        console.error(error.message)
+    }
+}
+export {signup,login,logout,auth,db,resetPass}

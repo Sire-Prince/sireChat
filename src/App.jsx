@@ -1,17 +1,18 @@
 
 import  { React, useEffect, useContext, useState } from 'react'
-import { Routes, Route, useNavigate, } from 'react-router-dom'
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import './App.css'
 import Login from './pages/login/Login.jsx'
 import Chat from './pages/chat/Chat.jsx'
 import ProfileUpdate from './pages/profileUpdate/ProfileUpdate.jsx'
 import { onAuthStateChanged } from 'firebase/auth'
 import {auth} from "./config/firebase.js"
-import { AppContextProvider } from './context/AppContextProvider.jsx'
+import { AppContext} from './context/AppContext.jsx'
 
 const App = () => {
   const navigate = useNavigate();
-  const {loadUserData} = useContext(AppContextProvider)
+  const location = useLocation();
+  const {loadUserData} = useContext(AppContext);
   const [loading, setLoading] = useState(true);
 
  useEffect(() =>{
@@ -19,7 +20,8 @@ const App = () => {
     try {
       if(user){
         await loadUserData(user.uid)
-        navigate("/chat");
+        // Only redirect to /chat automatically when on the root path
+        if (location.pathname === "/") navigate("/chat");
       }
       else{
         navigate("/")
@@ -31,7 +33,7 @@ const App = () => {
     }
   })
   return () => unsubscribe();
-  },[navigate, loadUserData])
+  },[navigate, loadUserData, location])
 
   if (loading) return <div className='loading'>Loading...</div>;
 

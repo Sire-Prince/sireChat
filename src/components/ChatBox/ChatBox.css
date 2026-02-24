@@ -100,3 +100,36 @@ max-width: 230px;
 margin-bottom: 30px;
 border-radius: 8px;
 }
+.chat-welcome{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color:#adadad
+}
+.chat-welcome img{
+    width: 60px;
+}
+.chat-welcome p{
+    font-size: 20px;
+    font-weight: 500;
+    color:#383838;
+}
+ .chat-user .arrow{
+        display: none;
+    }
+
+@media(max-width:908px){
+    .chat-box{
+       width: 100%;
+       justify-content: center;
+       height: 99vh;
+    }
+    .chat-user .arrow{
+        display: block;
+    }
+    .chat-user .help{
+        display: none;
+    }
+}

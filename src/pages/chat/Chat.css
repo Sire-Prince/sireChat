@@ -12,3 +12,26 @@
     background-color: aliceblue;
     grid-template-columns:1fr 2fr 1fr;
 }
+.loading{
+    display: flex;
+        background: linear-gradient(#ffffff, #e8e8ff);
+
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: cursive;
+    font-size: 24px;
+    font-weight: 600;
+    color: rgb(16, 15, 15);
+}
+
+@media(max-width:900px){
+ 
+    .chat-container{
+        display: flex;
+    }
+.loading{
+    font-size: 30px;
+}
+
+}

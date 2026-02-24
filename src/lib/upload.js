@@ -6,7 +6,11 @@ export const upload = async (file) => {
   const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 
   if (!UPLOAD_PRESET || !CLOUD_NAME) {
-    console.error("Cloudinary environment variables are not set");
+    const msg = "Cloudinary environment variables are not set.\n" +
+                "Make sure VITE_CLOUDINARY_UPLOAD_PRESET and " +
+                "VITE_CLOUDINARY_CLOUD_NAME are defined in your .env file.";
+    console.error(msg);
+    alert(msg);
     return null;
   }
 

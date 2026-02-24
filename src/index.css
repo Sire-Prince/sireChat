@@ -21,3 +21,8 @@ width: 15px !important;
     font-weight: 600;
     color: rgb(16, 15, 15);
 }
+@media(max-width:900px){
+ .hidden{
+  display: none;
+}
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import './Login.css'
 import assets from '../../assets/assets.js'
 import { useState } from 'react'
-import {signup, login} from "../../config/firebase.js"
+import {signup, login, resetPass} from "../../config/firebase.js"
 
 const Login = () => {
 
@@ -45,7 +45,7 @@ try {
     <div className="login">
         <div className='login-img'>
            <img src={assets.logo} alt="logo" />  
-           <h2>Chat App</h2> 
+           <h2>sireChat</h2> 
         </div>
     
       <form onSubmit={unSubmitHandler} className='login-form' action="">
@@ -67,7 +67,9 @@ try {
                 Create an account <span  onClick={()=> setCurrState("Sign Up")}> Sign up </span>
             </p> }
            
-         
+         {currState === "login" ?  <p className="login-toggle">
+                Forgot Password <span  onClick={()=> resetPass(email)}> reset here </span>
+            </p> : null }
         </div>
       </form>
      </div>

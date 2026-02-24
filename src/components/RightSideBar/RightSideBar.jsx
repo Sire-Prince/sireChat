@@ -3,11 +3,14 @@ import "./RightSideBar.css"
 import assets from '../../assets/assets'
 import { logout } from '../../config/firebase'
 import { useNavigate } from 'react-router-dom'
-import { AppContext } from '../../context/AppContext'
+import { AppContext} from '../../context/AppContext'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 const RightSideBar = () => {
   const navigate = useNavigate();
-  const { userData } = useContext(AppContext);
+  const {chatUser,messages } = useContext(AppContext);
+const [msgImages, setMsgImages] = useState([]);
 
   const handleLogout = async () => {
     try {
@@ -18,26 +21,40 @@ const RightSideBar = () => {
     }
   };
 
-  return (
+  useEffect(()=>{
+   let tempVar = [];
+   messages.map((msg)=>{
+    if (msg.image) {
+      tempVar.push(msg.image)
+    }
+   })
+  setMsgImages(tempVar)
+  },[messages])
+
+  return chatUser ? (
+
     <div className='rs'>
       <div className="rs-profile">
-        <img src={userData?.avatar || assets.profile_3} alt="profile" />
-        <h3>{userData?.name || "User"} <img src={assets.green_dot}className="dot" alt="dot" /></h3>
-        <p>{userData?.bio || "Hey there!"}</p>
+        <img src={chatUser.userData?.avatar || assets.pro1} alt="profile" />
+
+        <h3> {Date.now() - chatUser.userData.lastSeen <= 7000 ? <img src={assets.green_dot} className='dot' alt="" /> : null}
+{chatUser.userData?.name || "User"} </h3>
+        <p>{chatUser.userData?.bio || "Try unitl it fa!"}</p>
       </div>
       <hr />
       <div className='rs-media'>
         <p>Media</p>
         <div>
-          <img src={assets.profile_2} alt="media1" />
-          <img src={assets.profile_3} alt="media2" />
-          <img src={assets.pro1} alt="media3" />
-          <img src={assets.pro1} alt="media4" />
-          <img src={assets.profile_2} alt="media5" />
-          <img src={assets.profile_3} alt="media6" />
+         {msgImages.map((url,index)=>(<img onClick={(()=>{window.open(url)
+         })} key={index} src={url} alt="" />))}
         </div>
       </div>
       <button onClick={handleLogout}>Logout</button>
+    </div>
+  )
+  : (
+    <div className='rs'>
+      <button onClick={()=>logout()}></button>
     </div>
   )
 }
