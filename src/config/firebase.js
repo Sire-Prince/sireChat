@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { createUserWithEmailAndPassword, getAuth, sendPasswordResetEmail, signInWithEmailAndPassword, signOut } from "firebase/auth"
-import { getFirestore, setDoc, doc, collection, query, where, getDoc } from "firebase/firestore"; 
+import { getFirestore, setDoc, doc, collection, query, where, getDocs } from "firebase/firestore"; 
 import { toast } from "react-toastify/unstyled";
 
 const firebaseConfig = {
@@ -12,7 +12,6 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
-
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -52,14 +51,12 @@ try {
 }
 }
 
-
 const logout = async () => {
 try {
      await signOut(auth,)
 } catch (error) {
     console.error(error)
 }      
-  
 }
 
 const resetPass = async (email)=>{
@@ -68,19 +65,19 @@ const resetPass = async (email)=>{
         return null
     }
     try {
-        const userRef = collection(db, "user");
+        const userRef = collection(db, "users");
         const q = query(userRef, where("email","==",email));
-       const querSnap = await getDoc(q);
-     if(!querSnap.empty){
-        await sendPasswordResetEmail(auth,email);
-        toast.success("Reset Email Sent")
-     }
-     else{
-          toast.error("Email doesn't exist")
-     }
+        const querSnap = await getDocs(q);
+        if(!querSnap.empty){
+            await sendPasswordResetEmail(auth,email);
+            toast.success("Reset Email Sent")
+        }
+        else{
+             toast.error("Email doesn't exist")
+        }
     } catch (error) {
         toast.error(error);
         console.error(error.message)
     }
 }
-export {signup,login,logout,auth,db,resetPass}
+export {signup,login,logout,auth,db,resetPass};
