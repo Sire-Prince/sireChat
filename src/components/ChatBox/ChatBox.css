@@ -4,16 +4,27 @@
     background-color: #f1f5ff;
 }
 .chat-user{
-    padding: 10px 15px;
+    padding: 10px 18px;
     display: flex;
     align-items: center;
     gap: 10px;
     border-bottom:1px solid #c6c6c6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+.chat-user .lss{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
 .chat-user img{
- width: 25px;
+ width: 24px;
  border-radius: 50%;
 }
+
 .chat-user img:first-child{
  width: 35px;
  aspect-ratio:1/1;
@@ -48,6 +59,7 @@
 .chat-input label img{
     width: 22px;
 }
+
 .chat-input input{
     flex: 1;
     border: none;
@@ -100,6 +112,42 @@ max-width: 230px;
 margin-bottom: 30px;
 border-radius: 8px;
 }
+/* Online dot indicator */
+.dot {
+  width: 12px !important;
+  height: 12px !important;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+/* Help icon - separate from online dot */
+.chat-user .help {
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+/* Make sure the online dot is green */
+.dot[alt="online"] {
+  background-color: #4CAF50;
+  border: 2px solid white;
+}
+
+/* Positioning for the avatar section */
+.chat-user .lss {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Fix for the online dot next to name */
+.chat-user p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 0;
+}
 .chat-welcome{
     width: 100%;
     display: flex;
@@ -119,7 +167,95 @@ border-radius: 8px;
  .chat-user .arrow{
         display: none;
     }
+/* Video message container */
+.video-container {
+  position: relative;
+  display: inline-block;
+  max-width: 300px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
 
+/* Video player styling */
+.msg-video {
+  width: 100%;
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 12px;
+  background-color: #000;
+  display: block;
+  object-fit: cover;
+}
+
+/* Sent vs received message alignment */
+.s-msg .video-container {
+  margin-left: auto;
+}
+
+.r-msg .video-container {
+  margin-right: auto;
+}
+
+/* Timestamp and avatar container */
+.s-msg div, .r-msg div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #666;
+}
+
+.s-msg div {
+  justify-content: flex-end;
+}
+
+.s-msg div img, .r-msg div img {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Image message styling */
+.msg-img {
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 12px;
+  object-fit: cover;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .video-container,
+  .msg-video,
+  .msg-img {
+    max-width: 200px;
+    max-height: 200px;
+  }
+  
+  .s-msg div img, .r-msg div img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .s-msg div, .r-msg div {
+    font-size: 10px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .video-container,
+  .msg-video,
+  .msg-img {
+    max-width: 150px;
+    max-height: 150px;
+  }
+}
 @media(max-width:908px){
     .chat-box{
        width: 100%;
@@ -133,3 +269,6 @@ border-radius: 8px;
         display: none;
     }
 }
+
+
+

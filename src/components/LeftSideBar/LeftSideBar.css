@@ -121,7 +121,23 @@ margin: 8px 0px;
 }.friends .border div span{
     color: #07fff3;
 }
+.search-status, .no-results {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+}
 
+.no-chats {
+  padding: 40px 20px;
+  text-align: center;
+  color: #888;
+}
+
+.no-chats .hint {
+  font-size: 12px;
+  margin-top: 10px;
+  color: #aaa;
+}
 @media(max-width:908px){
     .ls{
        width: 100%;

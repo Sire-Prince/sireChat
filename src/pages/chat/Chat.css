@@ -15,7 +15,7 @@
 .loading{
     display: flex;
         background: linear-gradient(#ffffff, #e8e8ff);
-
+width: 100%;
     justify-content: center;
     align-items: center;
     height: 100vh;
