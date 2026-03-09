@@ -48,7 +48,8 @@ const RightSideBar = ({ setShowInfo }) => {
           <img src={chatUser.userData?.avatar || assets.avatar_icon} alt="profile" />
           <h3>
             {chatUser.userData?.name}
-            {Date.now() - chatUser.userData?.lastSeen <= 60000 && <span className="dot"></span>}
+            {Date.now() - chatUser.userData?.lastSeen <= 60000 && <span className="dot"></span>
+            }
           </h3>
           <p>{chatUser.userData?.bio || "No bio yet"}</p>
         </div>
