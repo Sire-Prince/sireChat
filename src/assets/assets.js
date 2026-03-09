@@ -13,8 +13,6 @@ import send from "./send.png"
 import avatar from "./avatar.png"
 import arrow from "./arrow.png"
 
-
-
 const assets = {
     logo,
     pro1,
