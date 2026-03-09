@@ -1,79 +1,14 @@
-// import React, { useContext } from 'react'
-// import "./RightSideBar.css"
-// import assets from '../../assets/assets'
-// import { logout } from '../../config/firebase'
-// import { useNavigate } from 'react-router-dom'
-// import { AppContext} from '../../context/AppContext'
-// import { useEffect } from 'react'
-// import { useState } from 'react'
-
-// const RightSideBar = () => {
-//   const navigate = useNavigate();
-//   const { chatUser,messages } = useContext(AppContext);
-// const [msgImages, setMsgImages] = useState([]);
-
-//   const handleLogout = async () => {
-//     try {
-//       await logout();
-//       navigate("/");
-//     } catch (error) {
-//       console.error("Logout failed:", error);
-//     }
-//   };
-
-//   useEffect(()=>{
-//    let tempVar = [];
-//    messages.map((msg)=>{
-//     if (msg.image) {
-//       tempVar.push(msg.image)
-//     }
-//    })
-//   setMsgImages(tempVar)
-//   },[messages])
-
-//   return chatUser ? (
-
-//     <div className='rs'>
-//       <div className="rs-profile">
-//         <img src={chatUser.userData?.avatar || assets.pro1} alt="profile" />
-
-//         <h3> {Date.now() - chatUser.userData.lastSeen <= 7000 ? <img src={assets.green_dot} className='dot' alt="" /> : null}
-// {chatUser.userData?.name || "User"} </h3>
-//         <p>{chatUser.userData?.bio || "Try unitl it fa!"}</p>
-//       </div>
-//       <hr />
-//       <div className='rs-media'>
-//         <p>Media</p>
-//         <div>
-//          {msgImages.map((url,index)=>(<img onClick={(()=>{window.open(url)
-//          })} key={index} src={url} alt="" />))}
-//         </div>
-//       </div>
-//       <button onClick={handleLogout}>Logout</button>
-//     </div>
-//   )
-//   : (
-//     <div className='rs'>
-//       <button onClick={handleLogout}>Logout</button>
-//     </div>
-//   )
-// }
-
-// export default RightSideBar
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import "./RightSideBar.css"
 import assets from '../../assets/assets'
 import { logout } from '../../config/firebase'
 import { useNavigate } from 'react-router-dom'
-import { AppContext} from '../../context/AppContext'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { AppContext } from '../../context/AppContext'
 
-const RightSideBar = () => {
+const RightSideBar = ({ setShowInfo }) => {
   const navigate = useNavigate();
   const { userData, chatUser, messages } = useContext(AppContext);
   const [msgImages, setMsgImages] = useState([]);
-const [online, setOnline] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -83,12 +18,6 @@ const [online, setOnline] = useState(false);
       console.error("Logout failed:", error);
     }
   };
-  // Check if online
-useEffect(() => {
-  if (chatUser?.userData?.lastSeen) {
-    setOnline(Date.now() - chatUser.userData.lastSeen < 10000);
-  }
-}, [chatUser]);
 
   useEffect(() => {
     let tempVar = [];
@@ -102,37 +31,59 @@ useEffect(() => {
 
   return (
     <div className='rs'>
-      {/* MY PROFILE - Always visible */}
-      <div className="rs-profile">
-        <img src={userData?.avatar || assets.pro1} alt="profile" />
-        <h3>{userData?.name || "User"}</h3>
-        <p>{userData?.bio || "No bio yet"}</p>
+      {/* HEADER WITH BACK ARROW FOR MOBILE */}
+      <div className="rs-header">
+        <img 
+          src={assets.arrow || assets.close} 
+          className="back-arrow" 
+          onClick={() => setShowInfo(false)} 
+          alt="back" 
+        />
+        <p>User Info</p>
       </div>
-      <hr />
-      {chatUser && (
-        <>
-          {/* MEDIA */}
-          <div className='rs-media'>
-            <p>Media</p>
-            <div>
-              {msgImages.map((url, index) => (
-                <img 
-                  onClick={() => window.open(url)} 
-                  key={index} 
-                  src={url} 
-                  alt="" 
-                />
-              ))}
-            </div>
-          </div>
-        </>
+
+      {/* DISPLAY SELECTED CHAT USER INFO (If a chat is open) */}
+      {chatUser ? (
+        <div className="rs-profile">
+          <img src={chatUser.userData?.avatar || assets.avatar_icon} alt="profile" />
+          <h3>
+            {chatUser.userData?.name}
+            {Date.now() - chatUser.userData?.lastSeen <= 60000 && <span className="dot"></span>}
+          </h3>
+          <p>{chatUser.userData?.bio || "No bio yet"}</p>
+        </div>
+      ) : (
+        /* FALLBACK: SHOW MY OWN PROFILE IF NO CHAT SELECTED */
+        <div className="rs-profile">
+          <img src={userData?.avatar || assets.avatar_icon} alt="profile" />
+          <h3>{userData?.name}</h3>
+          <p>{userData?.bio}</p>
+        </div>
       )}
 
-      {/* LOGOUT BUTTON */}
-      <button onClick={handleLogout}>Logout</button>
+      <hr />
+
+      <div className='rs-media'>
+        <p>Media</p>
+        <div>
+          {msgImages.length > 0 ? (
+            msgImages.map((url, index) => (
+              <img 
+                onClick={() => window.open(url)} 
+                key={index} 
+                src={url} 
+                alt="media" 
+              />
+            ))
+          ) : (
+            <span className="no-media">No media shared</span>
+          )}
+        </div>
+      </div>
+
+      <button className="logout-btn" onClick={handleLogout}>Logout</button>
     </div>
   );
 }
 
 export default RightSideBar;
-

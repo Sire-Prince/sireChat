@@ -112,15 +112,7 @@ max-width: 230px;
 margin-bottom: 30px;
 border-radius: 8px;
 }
-/* Online dot indicator */
-.dot {
-  width: 12px !important;
-  height: 12px !important;
-  border-radius: 50%;
-  margin-left: 5px;
-}
 
-/* Help icon - separate from online dot */
 .chat-user .help {
   width: 20px;
   height: 20px;
@@ -128,20 +120,12 @@ border-radius: 8px;
   cursor: pointer;
 }
 
-/* Make sure the online dot is green */
-.dot[alt="online"] {
-  background-color: #4CAF50;
-  border: 2px solid white;
-}
-
-/* Positioning for the avatar section */
 .chat-user .lss {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-/* Fix for the online dot next to name */
 .chat-user p {
   display: flex;
   align-items: center;
@@ -149,7 +133,9 @@ border-radius: 8px;
   margin: 0;
 }
 .chat-welcome{
+ 
     width: 100%;
+    height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -227,8 +213,15 @@ border-radius: 8px;
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
+.dot {
+    width: 12px !important;
+    height: 12px !important;
+    display: inline-block !important; 
+    object-fit: contain;
+    background-color: transparent; 
+    flex-shrink: 0; 
 
-/* Mobile responsiveness */
+}
 @media (max-width: 768px) {
   .video-container,
   .msg-video,

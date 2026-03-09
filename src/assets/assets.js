@@ -10,6 +10,9 @@ import close from "./close.png"
 import hello from "./hello.jpg"
 import attach from "./attach.png"
 import send from "./send.png"
+import avatar from "./avatar.png"
+import arrow from "./arrow.png"
+
 
 
 const assets = {
@@ -21,8 +24,10 @@ const assets = {
     greendot,
     dots,
     help,
+    arrow,
     hello,
     attach,
+    avatar,
     send,
     close
 }
